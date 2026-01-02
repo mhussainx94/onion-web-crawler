@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en" style="--viewport-height: 5.80px;"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   System Working Flow
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://d3js.org/d3.v7.min.js">
+  </script>
+  <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 720px; margin: 0;
+            padding: 0; overflow-x: hidden;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+        .circuit-line {
+            stroke: #39FF14;
+            stroke-width: 1;
+            stroke-dasharray: 5, 5;
+            opacity: 0.3;
+        }
+        .flow-step {
+            transition: all 0.3s ease;
+        }
+        .flow-step:hover {
+            filter: brightness(1.5);
+            transform: scale(1.05);
+        }
+        .flow-arrow {
+            stroke: #0892D0;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.inset-0{inset:0px}.bottom-4{bottom:1rem}.left-0{left:0px}.right-8{right:2rem}.top-0{top:0px}.top-32{top:8rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.h-1{height:0.25rem}.h-full{height:100%}.w-1\/3{width:33.333333%}.w-full{width:100%}.max-w-3xl{max-width:48rem}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-green-400{--tw-gradient-from:#4ade80 var(--tw-gradient-from-position);--tw-gradient-to:rgb(74 222 128 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-blue-400{--tw-gradient-to:rgb(96 165 250 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #60a5fa var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-purple-400{--tw-gradient-to:#c084fc var(--tw-gradient-to-position)}.p-8{padding:2rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253 / var(--tw-text-opacity, 1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}</style></head>
+ <body class="">
+  <div class="slide bg-gray-900 text-white font-mono">
+   <!-- Background circuit pattern -->
+   <svg class="absolute inset-0 w-full h-full" id="circuit-background" preserveAspectRatio="none"></svg>
+   <!-- Header -->
+   <div class="absolute top-0 left-0 w-full p-8">
+    <h1 class="text-4xl font-bold text-center mb-2">
+     <span class="text-green-400">
+      Data
+     </span>
+     <span class="text-blue-400">
+      Processing Pipeline
+     </span>
+    </h1>
+    <div class="w-1/3 h-1 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 mx-auto">
+    </div>
+   </div>
+   <!-- Flow Diagram Container -->
+   <div class="absolute top-32 left-0 w-full px-10">
+    <div class="text-center mb-4 max-w-3xl mx-auto">
+      <p class="text-lg text-blue-300">Secure data acquisition and analysis workflow with integrated threat detection</p>
+    </div>
+    <svg class="mx-auto pulse" height="350" id="flow-diagram" width="1050"></svg>
+   </div>
+   <!-- Footer with slide number -->
+   <div class="absolute bottom-4 right-8 text-sm text-gray-400" style="visibility: hidden;">
+    7/10
+   </div>
+  </div>
+  <script>
+   // Create circuit background
+        const svg = d3.select("#circuit-background");
+        const width = 1280;
+        const height = 720;
+        
+        // Add horizontal lines
+        for (let i = 0; i < height; i += 50) {
+            svg.append("line")
+                .attr("x1", 0)
+                .attr("y1", i)
+                .attr("x2", width)
+                .attr("y2", i)
+                .attr("class", "circuit-line");
+        }
+        
+        // Add vertical lines
+        for (let i = 0; i < width; i += 50) {
+            svg.append("line")
+                .attr("x1", i)
+                .attr("y1", 0)
+                .attr("x2", i)
+                .attr("y2", height)
+                .attr("class", "circuit-line");
+        }
+        
+        // Create flow diagram
+        const flowSvg = d3.select("#flow-diagram");
+        
+        // Define arrow marker
+        flowSvg.append("defs").append("marker")
+            .attr("id", "arrowhead")
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 7)
+            .attr("refX", 9)
+            .attr("refY", 3.5)
+            .attr("orient", "auto")
+            .append("polygon")
+            .attr("points", "0 0, 10 3.5, 0 7")
+            .attr("fill", "#0892D0");
+        
+        // Define the steps
+        const steps = [
+            { id: 1, name: "Secure Crawling", icon: "fa-spider", desc: "TOR proxy acquisition" },
+            { id: 2, name: "Content Parsing", icon: "fa-file-alt", desc: "HTML/text extraction" },
+            { id: 3, name: "IOC Detection", icon: "fa-search", desc: "Pattern matching engine" },
+            { id: 4, name: "Threat Analysis", icon: "fa-tags", desc: "Multi-vector assessment" },
+            { id: 5, name: "Risk Scoring", icon: "fa-exclamation-triangle", desc: "Threat severity index" },
+            { id: 6, name: "Intel Dashboard", icon: "fa-desktop", desc: "Actionable visualization" }
+        ];
+        
+        // Calculate positions
+        const stepWidth = 140;
+        const gap = 60;
+        const totalWidth = steps.length * stepWidth + (steps.length - 1) * gap;
+        const startX = (1100 - totalWidth) / 2;
+        
+        // Create step boxes
+        steps.forEach((step, i) => {
+            const x = startX + i * (stepWidth + gap);
+            
+            // Create group for each step
+            const stepGroup = flowSvg.append("g")
+                .attr("class", "flow-step")
+                .attr("transform", `translate(${x}, 100)`);
+            
+            // Add box
+            stepGroup.append("rect")
+                .attr("width", stepWidth)
+                .attr("height", 140)
+                .attr("rx", 10)
+                .attr("ry", 10)
+                .attr("fill", "#1A1A1A")
+                .attr("stroke", "#39FF14")
+                .attr("stroke-width", 2)
+                .attr("opacity", 0.8);
+            
+            // Add icon background
+            stepGroup.append("circle")
+                .attr("cx", stepWidth / 2)
+                .attr("cy", 35)
+                .attr("r", 25)
+                .attr("fill", "#4B0082")
+                .attr("stroke", "#0892D0")
+                .attr("stroke-width", 2);
+            
+            // Add icon text (Font Awesome)
+            stepGroup.append("text")
+                .attr("x", stepWidth / 2)
+                .attr("y", 42)
+                .attr("text-anchor", "middle")
+                .attr("font-family", "FontAwesome")
+                .attr("font-size", "24px")
+                .attr("fill", "#39FF14")
+                .text(function() { 
+                    // Map Font Awesome class names to Unicode
+                    const iconMap = {
+                        "fa-spider": "\uf714",
+                        "fa-file-alt": "\uf15c",
+                        "fa-search": "\uf002",
+                        "fa-tags": "\uf02c",
+                        "fa-exclamation-triangle": "\uf071",
+                        "fa-desktop": "\uf108"
+                    };
+                    return iconMap[step.icon] || "\uf059";
+                });
+            
+            // Add step name
+            stepGroup.append("text")
+                .attr("x", stepWidth / 2)
+                .attr("y", 85)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "16px")
+                .attr("font-weight", "bold")
+                .attr("fill", "#0892D0")
+                .text(step.name);
+            
+            // Add description
+            stepGroup.append("text")
+                .attr("x", stepWidth / 2)
+                .attr("y", 115)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "14px")
+                .attr("fill", "#ffffff")
+                .attr("opacity", 0.8)
+                .text(step.desc);
+            
+            // Add connection arrows (except for the last step)
+            if (i < steps.length - 1) {
+                flowSvg.append("path")
+                    .attr("d", `M${x + stepWidth + 10}, 170 L${x + stepWidth + gap - 10}, 170`)
+                    .attr("class", "flow-arrow");
+                
+                // Add arrowhead
+                flowSvg.append("polygon")
+                    .attr("points", `${x + stepWidth + gap - 10},170 ${x + stepWidth + gap - 20},165 ${x + stepWidth + gap - 20},175`)
+                    .attr("fill", "#0892D0");
+            }
+        });
+        
+        // Add data flow animation
+        const dataPoints = flowSvg.selectAll(".data-point")
+            .data([0, 1, 2, 3, 4])
+            .enter()
+            .append("circle")
+            .attr("class", "data-point")
+            .attr("r", 5)
+            .attr("fill", "#39FF14")
+            .attr("opacity", 0)
+            .attr("cx", startX)
+            .attr("cy", 170);
+        
+        // Animate data points
+        function animateDataPoints() {
+            dataPoints
+                .transition()
+                .duration(2000)
+                .delay((d, i) => i * 400)
+                .attr("opacity", 1)
+                .attr("cx", (d, i) => startX + i * (stepWidth + gap))
+                .transition()
+                .duration(500)
+                .attr("opacity", 0)
+                .on("end", animateDataPoints);
+        }
+        
+        animateDataPoints();
+  </script>
+ 
+
+<script data-sk-script-id="viewportHeightScript">
+      (function() {
+        var viewportHeight = window.top === window ? '1vh' : '5.80px';
+        document.documentElement.style.setProperty('--viewport-height', viewportHeight);
+      })();
+    </script>
+</body></html>
